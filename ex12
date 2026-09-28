@@ -1,0 +1,60 @@
+using System;
+
+namespace TrianguloRetanguloPOO
+{
+    class Triangulo
+    {
+        public double A { get; set; }
+        public double B { get; set; }
+        public double C { get; set; }
+
+        public Triangulo(double a, double b, double c)
+        {
+            A = a;
+            B = b;
+            C = c;
+        }
+
+        public bool EhTriangulo()
+        {
+            return (A + B > C) && (A + C > B) && (B + C > A);
+        }
+
+        public bool EhRetangulo()
+        {
+            double[] lados = { A, B, C };
+            Array.Sort(lados);
+
+            return Math.Pow(lados[0], 2) + Math.Pow(lados[1], 2) == Math.Pow(lados[2], 2);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Digite o valor A: ");
+            double a = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor B: ");
+            double b = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor C: ");
+            double c = double.Parse(Console.ReadLine());
+
+            Triangulo t = new Triangulo(a, b, c);
+
+            if (t.EhTriangulo())
+            {
+                if (t.EhRetangulo())
+                    Console.WriteLine("Forma um triângulo retângulo.");
+                else
+                    Console.WriteLine("Forma um triângulo, mas não é retângulo.");
+            }
+            else
+            {
+                Console.WriteLine("Não formam um triângulo.");
+            }
+        }
+    }
+}
