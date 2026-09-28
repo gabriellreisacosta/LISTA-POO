@@ -1,0 +1,55 @@
+using System;
+
+namespace TrianguloPOO
+{
+    class Triangulo
+    {
+        public double A { get; set; }
+        public double B { get; set; }
+        public double C { get; set; }
+
+        public Triangulo(double a, double b, double c)
+        {
+            A = a;
+            B = b;
+            C = c;
+        }
+
+        public bool EhTriangulo()
+        {
+            return (A + B > C) && (A + C > B) && (B + C > A);
+        }
+
+        public string Classificar()
+        {
+            if (!EhTriangulo())
+                return "Não formam um triângulo.";
+
+            if (A == B && B == C)
+                return "Triângulo equilátero.";
+            else if (A == B || A == C || B == C)
+                return "Triângulo isósceles.";
+            else
+                return "Triângulo escaleno.";
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Digite o lado A: ");
+            double a = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite o lado B: ");
+            double b = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite o lado C: ");
+            double c = double.Parse(Console.ReadLine());
+
+            Triangulo t = new Triangulo(a, b, c);
+
+            Console.WriteLine(t.Classificar());
+        }
+    }
+}
